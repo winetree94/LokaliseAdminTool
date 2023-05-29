@@ -1,0 +1,83 @@
+<div class="flex flex-row-reverse gap-2 mt-5 mx-5 mb-5 items-center">
+  <button mat-flat-button color="primary" (click)="onPushClick()">Push</button>
+  <button
+    mat-stroked-button
+    color="basic"
+    (click)="onPullClick()"
+    class="flex justify-center"
+  >
+    <mat-icon *ngIf="pulling(); else pullText" class="m-0"
+      ><mat-spinner diameter="18"> </mat-spinner>
+    </mat-icon>
+    <ng-template #pullText> Pull </ng-template>
+  </button>
+  <span *ngIf="settings().lastKeyFetched">
+    Last Pulled: {{ settings().lastKeyFetched }}
+  </span>
+
+  <span class="flex-1"></span>
+</div>
+
+<div class="mx-5 flex">
+  <mat-checkbox
+    [checked]="
+      filteredSelectedCount() > 0 &&
+      filteredSelectedCount() === searchFilteredKeys().length
+    "
+    (change)="toggleSelectAll()"
+  >
+    Select All
+  </mat-checkbox>
+  <mat-form-field class="flex-1 ml-5">
+    <input
+      matInput
+      [formControl]="searchControl"
+      placeholder="Key names, space to or"
+    />
+  </mat-form-field>
+</div>
+
+<div class="flex-1" cdkVirtualScrollingElement>
+  <cdk-virtual-scroll-viewport itemSize="200">
+    <div
+      *cdkVirtualFor="
+        let item of searchFilteredKeys();
+        let index = index;
+        trackBy: trackByFn
+      "
+      class="h-[200px] flex flex-col justify-start mx-5 gap-1"
+    >
+      <mat-checkbox
+        [checked]="
+          viewModel()[item.key_id] ? viewModel()[item.key_id].selected : false
+        "
+        (change)="toggleSelect(item.key_id)"
+      >
+        {{ index }}. {{ item.key_name.web }}
+      </mat-checkbox>
+      <div>
+        <mat-chip-listbox aria-label="Dog selection">
+          <mat-chip *ngFor="let tag of item.tags">
+            {{ tag }}
+          </mat-chip>
+        </mat-chip-listbox>
+      </div>
+      <div>Created at: {{ item.created_at }}</div>
+      <div>Translation modified at: {{ item.translations_modified_at }}</div>
+      <div>Last modified at: {{ item.modified_at }}</div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
+
+<div
+  *ngIf="selectedKeys().length > 0"
+  class="p-5 border-t-2 flex items-center gap-2"
+>
+  <span> {{ selectedKeys().length }} Selected </span>
+  <span>
+    <input [formControl]="tagControl" class="h-10" placeholder="tag for add" />
+  </span>
+  <span>
+    <button mat-flat-button color="primary" (click)="onSubmitTag()">Add</button>
+  </span>
+</div>

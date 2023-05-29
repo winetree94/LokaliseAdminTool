@@ -1,5 +1,22 @@
-<div>
-  settings
-</div>
+<form
+  [formGroup]="formGroup"
+  class="flex flex-col flex-1"
+  (submit)="onSubmit()"
+>
+  <mat-form-field>
+    <mat-label>Project ID</mat-label>
+    <input matInput formControlName="projectId" />
+  </mat-form-field>
 
-<input type="text" name="" id="">
+  <mat-form-field>
+    <mat-label>API Keys</mat-label>
+    <input matInput formControlName="apiKey" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Branch (Optional)</mat-label>
+    <input matInput formControlName="branch" />
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" color="primary">Save</button>
+</form>

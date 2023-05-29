@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="sidebarOpen = !sidebarOpen"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a class="cursor-pointer" [routerLink]="['/']">Lokalise Admin Tools</a>
+  <span class="flex-auto"></span>
+  <button mat-icon-button class="example-icon" [routerLink]="['/settings']">
+    <mat-icon>settings</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="flex-auto" [hasBackdrop]="false">
+  <mat-drawer #drawer [mode]="'side'" [opened]="sidebarOpen">
+    <mat-nav-list>
+      <a mat-list-item [activated]="false" [routerLink]="['keys']">
+        <h3 matListItemTitle>Key Management</h3>
+        <p matListItemLine>Key Management</p>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content class="flex">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

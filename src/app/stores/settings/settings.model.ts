@@ -1,3 +1,6 @@
 export interface Settings {
-  xApiKey: string;
+  projectId: string;
+  apiKey: string;
+  branch: string;
+  lastKeyFetched: string;
 }

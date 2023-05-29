@@ -1,9 +1,12 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { Settings  } from './settings.model';
+import { Settings } from './settings.model';
 import { SettingsActions } from 'src/app/stores/settings/settings.actions';
 
 const initialState: Settings = {
-  xApiKey: '',
+  projectId: '',
+  apiKey: '',
+  branch: '',
+  lastKeyFetched: '',
 };
 
 export const settingFeature = createFeature({
@@ -13,6 +16,6 @@ export const settingFeature = createFeature({
     on(SettingsActions.set, (state, { settings }) => ({
       ...state,
       ...settings,
-    })),
+    }))
   ),
 });
