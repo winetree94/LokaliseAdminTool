@@ -17,9 +17,21 @@
 <mat-drawer-container class="flex-auto" [hasBackdrop]="false">
   <mat-drawer #drawer [mode]="'side'" [opened]="sidebarOpen">
     <mat-nav-list>
-      <a mat-list-item [activated]="false" [routerLink]="['keys']">
-        <h3 matListItemTitle>Key Management</h3>
-        <p matListItemLine>Key Management</p>
+      <a mat-list-item [activated]="false" [routerLink]="['/projects']">
+        <h3 matListItemTitle>Projects</h3>
+        <p matListItemLine>Project management</p>
+      </a>
+      <a mat-list-item [activated]="false" [routerLink]="['/languages']">
+        <h3 matListItemTitle>Languages</h3>
+        <p matListItemLine>language management</p>
+      </a>
+      <a mat-list-item [activated]="false" [routerLink]="['/keys']">
+        <h3 matListItemTitle>Key</h3>
+        <p matListItemLine>Key Metadata Management</p>
+      </a>
+      <a mat-list-item [activated]="false" [routerLink]="['/translation']">
+        <h3 matListItemTitle>Translation</h3>
+        <p matListItemLine>Translation data management</p>
       </a>
     </mat-nav-list>
   </mat-drawer>
