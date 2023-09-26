@@ -63,6 +63,8 @@ export class SettingsComponent {
         },
       })
     );
-    this._snackbar.open('saved');
+    this._snackbar.open('saved', '', {
+      duration: 1000,
+    });
   }
 }

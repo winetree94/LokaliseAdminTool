@@ -217,7 +217,9 @@ export class KeysComponent {
     });
 
     if (!diff.length) {
-      this._snackbar.open('no diff ');
+      this._snackbar.open('no diff ', '', {
+        duration: 1000,
+      });
       return;
     }
 
@@ -230,7 +232,9 @@ export class KeysComponent {
     })
       .pipe(
         finalize(() => {
-          this._snackbar.open('successfully updated');
+          this._snackbar.open('successfully updated', '', {
+            duration: 1000,
+          });
         })
       )
       .subscribe();
